@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch源码解析</title>
+</head>
+<body>
+    <div>
+        <div id="app">heroking</div>
+        <button onclick="btn1()">button1</button>
+        <button onclick="btn2()">button2</button>
+    </div>
+    <script type="text/javascript" src="static/js/watch.js"></script>
+    <script type="text/javascript">
+        var vm = new watcher({
+            data:{
+                a: 1,
+                inner:''
+            },
+            watch:{
+                a(oldVal, newVal){
+                    document.getElementById("app").innerHTML='hello'
+                },
+                inner(oldVal, newVal){
+                    document.getElementById("app").innerHTML="heroking"
+                }
+            }
+        })
+
+        btn1=()=>{
+            vm.a=2
+        }
+        btn2=()=>{
+            vm.inner="a"
+        }
+    </script>
+</body>
+</html>

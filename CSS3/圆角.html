@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圆角</title>
+</head>
+<body>
+<div class="div1">1</div>
+<div class="div2">2</div>
+<div class="div3">3</div>
+<div class="div4">4</div>
+<div class="div8">8</div>
+<style>
+    /*
+    圆角知识点：
+    1. 单值属性
+    2. 双值属性：分别设置对角点
+    3. 三值属性
+    4. 四值属性
+    5. 圆角的单位：固定单位/百分比
+    6. 备注：圆角有大值特性，也就是值很大的时候，只会使用能够渲染的圆角大小渲染
+    */
+    .div1,
+    .div2,
+    .div3,
+    .div4{
+        width:100px;
+        height: 100px;
+        margin:50px;
+        background-color: red;
+    }
+    .div8{
+        width:100px;
+        height: 200px;
+        margin:50px;
+        border: 50px solid red;
+    }
+    /*step1:单值属性*/
+    .div1{
+        border-radius: 50px;
+    }
+    /*双值属性*/
+    .div2{
+        border-radius: 0 50px;
+    }
+    /*三值属性*/
+    .div3{
+        border-radius: 60px 20px 40px;
+    }
+    /*四值属性*/
+    .div4{
+        border-radius: 0 20px 40px 60px;
+    }
+    /*利用“单角圆角”属性设置右下角的水平圆角半径为200px，垂直半径为100px*/
+    .div8{
+        border-bottom-right-radius: 200px 100px;
+    }
+</style>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Calculator</title>
+</head>
+<body>
+<form>
+<table>
+    <tr>
+        <td id="result" class="search_box_" type="text"></td>
+    </tr>
+<table>
+    <tr>
+        <td class="rad_" onclick="calculate_radian()">Rad</td>
+        <td class="num_" onclick="change_mode()">...</td>
+        <td class="rad_" onclick="factorial()">X!</td>
+        <td class="rad_" onclick="lbracket('(')">(</td>
+        <td class="rad_" onclick="rbracket(')')">)</td>
+        <td class="rad_" onclick="remainder('%')">%</td>
+        <td class="rad_" class="tool" onclick="clearZero()">AC</td>
+      <!--AC键是清除所有寄存器里的内容-->
+    </tr>
+    <tr>
+      <!--Inv为反三角函数-->
+        <td class="rad_" onclick="arc()">Inv</td>
+        <td class="rad_" onclick="calculate_sin()">sin</td>
+        <td class="rad_" onclick="calculate_ln()">ln</td>
+        <td class="num_" onclick="command(7)">7</td>
+        <td class="num_" onclick="command(8)">8</td>
+        <td class="num_" onclick="command(9)">9</td>
+        <td class="rad_" class="tool" onclick="operator('+')">+</td>
+    </tr>
+    <tr>
+        <td class="rad_" onclick="calculate_PI()">PI</td>
+        <td class="rad_" onclick="calculate_cos()">cos</td>
+        <td class="rad_" onclick="calculate_log()">log</td>
+        <td class="num_" onclick="command(4)">4</td>
+        <td class="num_" onclick="command(5)">5</td>
+        <td class="num_" onclick="command(6)">6</td>
+        <td class="rad_" class="tool" onclick="operator('-')">-</td>
+    </tr>
+    <tr>
+        <td class="rad_" onclick="calculate_e10()">e</td>
+        <td class="rad_" onclick="calculate_tan()">tan</td>
+        <td class="rad_" onclick="calculate_sqrt()">sqrt</td>
+        <td class="num_" onclick="command(1)">1</td>
+        <td class="num_" onclick="command(2)">2</td>
+        <td class="num_" onclick="command(3)">3</td>
+        <td class="rad_" class="tool" onclick="operator('*')">*</td>
+    </tr>
+    <tr>
+        <td class="rad_" onclick="cu_result()">Ans</td>
+        <td class="rad_" onclick="get_e()">EXP</td>
+        <td class="rad_" onclick="calculate_x_y()">X<sup>y</sup></td>
+        <td class="num_" onclick="command(0)">0</td>
+        <td class="num_" onclick="dot('.')">.</td>
+        <td class="num_d" onclick="equal('=')">=</td>
+        <td class="rad_" class="tool" onclick="operator('/')">/</td>
+    </tr>
+</table>
+</table>
+</form>
+<script type="text/javascript">
+
+  //获取结果对象
+  var resultDom=document.getElementById("result");
+  var mark=false;
+  var dotmark=true;
+  var lbrackmark=true;
+  var rbrackmark=true;
+  var residue=true;
+  var base=false; //用以计算x的y次方
+  var e=false;//获取自然底数e的值
+  var et=false;
+  var arcsct=false;
+  var mode=1; //1为角度，2为弧度
+
+  //角度和弧度的转换
+  function change_mode() {
+    if(mode==1){
+      mode=2;
+      alert("弧度模式");
+    }else if(mode==2){
+      mode=1;
+      alert("角度模式");
+    }
+  }
+  //x的y次方
+  function calculate_x_y() {
+    var str = resultDom.innerText;
+    base = str;
+    baset=base;
+    resultDom.innerText ="";
+  }
+
+  //计算ln
+  function calculate_ln() {
+    var str = resultDom.innerText; //获取当前结果
+    resultDom.innerText = Math.log(str);
+  }
+
+  //计算log10
+  function calculate_log() {
+    var str = resultDom.innerText; //获取当前结果
+    resultDom.innerText = Math.log(str)/Math.LN10;
+  }
+
+  //开方
+  function calculate_sqrt() {
+    var str = resultDom.innerText;
+    resultDom.innerText = Math.sqrt(str);
+  }
+
+  //计算弧度（Rad）
+  function calculate_radian() {
+    var str = resultDom.innerText; //获取当前结果
+    var temp = str/180;
+    temp += ' PI';
+    resultDom.innerText = temp; //把角度转化为弧度并显示
+  }
+
+  //反三角函数
+  function arc() {
+    var str=resultDom.innerText;
+    if(mode==1){
+      arcsct=str;
+    }else{
+      arcsct=str/180;
+    }
+  }
+
+  //计算sin/arcsin
+  function calculate_sin() {
+    if(mode==1){
+      if(arcsct){
+        resultDom.innerText=Math.asin(arcsct)*180/Math.PI;
+      }else{
+        var str = resultDom.innerText; //获取当前结果
+        resultDom.innerText = Math.sin(str*Math.PI/180);//注意：Math要大写
+      }
+    }else{
+      if(arcsct){
+        resultDom.innerText=Math.asin(arcsct)/Math.PI;
+      }else{
+        var str = resultDom.innerText; //获取当前结果
+        resultDom.innerText = Math.sin(str*Math.PI);//注意：Math要大写
+      }
+    }
+  }
+
+  //计算cos/arcos
+  function calculate_cos() {
+    if(mode==1){
+      if (arcsct) {
+        resultDom.innerText = Math.acos(arcsct) * 180 / Math.PI;
+      } else {
+        var str = resultDom.innerText; //获取当前结果
+        resultDom.innerText = Math.cos(str * Math.PI / 180);
+    }
+    }else{
+      if (arcsct) {
+        resultDom.innerText = Math.acos(arcsct) / Math.PI;
+      }else {
+        var str = resultDom.innerText; //获取当前结果
+        resultDom.innerText = Math.cos(str * Math.PI);
+     }
+    }
+  }
+
+  //计算tan/arctan
+  function calculate_tan() {
+    if(mode==1){
+      if (arcsct) {
+        resultDom.innerText = Math.atan(arcsct) * 180 / Math.PI;
+      } else {
+        var str = resultDom.innerText; //获取当前结果
+        resultDom.innerText = Math.tan(str * Math.PI / 180);
+     }
+    }else{
+      if (arcsct) {
+        resultDom.innerText = Math.atan(arcsct) / Math.PI;
+      } else {
+        var str = resultDom.innerText; //获取当前结果
+        resultDom.innerText = Math.tan(str * Math.PI);
+     }
+    }
+  }
+
+  //计算阶乘
+  function factorial() {//num是在阶乘那里打印一个感叹号
+    var str = resultDom.innerText; //取获取当前结果
+    var temp=digui(str);
+    resultDom.innerText =temp;
+  }
+
+  //递归调用（供阶乘所用）
+  function digui(num) {
+    if(num<0){
+      num = -1;
+    }else if(num==1 || num==0){
+      num = 1;
+    }else{
+      num = num*digui(num-1);
+    }
+    return num;
+  }
+
+  //取余
+  function remainder(num) {
+    var str = resultDom.innerText; //获取当前结果
+    if(residue){
+      str += num;
+      resultDom.innerText=str;
+      residue=false;
+    }
+  }
+
+  //左括号
+  function lbracket(brac) {
+    var str = resultDom.innerText; //获取结果里面的值
+    if(lbrackmark){
+      str += brac;
+      resultDom.innerText=str;
+      lbrackmark=false;
+    }
+  }
+
+  //右括号
+  function rbracket(brac) {
+    var str = resultDom.innerText; //获取结果里面的值
+    if(rbrackmark){
+      str += brac;
+      resultDom.innerText=str;
+      rbrackmark=false;
+    }
+    residue=true;
+  }
+
+  <!--点击获取数字-->
+  function command(num){
+    if(e){
+      var ab=resultDom.innerText;
+      resultDom.innerText="";
+       e=0;
+    }else{
+      var str = resultDom.innerText; //获取结果里面的值
+      document.title=str;
+      str = (str == "0"? "":str); //如果获取来的值是0就为空，否则获取本身
+      str += num;
+      resultDom.innerText=str;
+      mark=true;
+      brackmark=true;
+      residue=true;
+    }
+  }
+
+  //点击AC清零时
+  function clearZero(){
+    resultDom.innerText="";
+  }
+  
+  //点击操作符
+  function operator(num) {
+    var str = resultDom.innerText; //获取结果字符串
+    if(mark){
+      str += num;
+      resultDom.innerText=str;
+      mark=false; //操作符无效
+      dotmark=true;
+    }
+    lbrackmark=true;
+  }
+
+  //小数点
+  function dot(num){
+    if(dotmark){
+        var str = resultDom.innerText;
+        str += num;
+        resultDom.innerText=str;
+        dotmark=false;
+    }
+  }
+  
+  //等号
+  function equal(num) {
+    if(base){
+        var y=resultDom.innerText;
+        var t = Math.pow(base,y);
+        resultDom.innerText=t;
+      }else if(et) {
+      var bc = resultDom.innerText;
+      resultDom.innerText = Math.pow(et,bc);
+    }else{
+      var str = resultDom.innerText; //获取等号
+      var r = eval(str);//自动处理数据
+      resultDom.innerText = r;
+    }
+  }
+
+  //计算PI
+  function calculate_PI() {
+    var str = resultDom.innerText;
+    resultDom.innerText=Math.PI;
+  }
+
+  //科学计数法
+  function calculate_e10() {
+    var str=resultDom.innerText;
+    var temp=str/Math.pow(10,str.length-1);
+    resultDom.innerText=temp+'e';
+    var sb=resultDom.innerText;
+    resultDom.innerText += str.length-1;
+  }
+
+  //EXP
+  function get_e(){
+    e = Math.E;
+    et=e;
+    var str = resultDom.innerText;
+    resultDom.innerText=e;
+  }
+
+  //Ans
+  function cu_result() {
+    var str = resultDom.innerText;
+    var Ans= eval(str);
+    resultDom.innerText=Ans;
+  }
+
+</script>
+<style type="text/css">
+.search_box_{
+  text-align:right;
+	width:506px;
+	height:38px;
+	font-size:27px;
+  border:1px solid #A9A9A9;
+	}
+
+.rad_
+{
+    border-radius:3px;
+    width:68.02px;
+    height:30px;
+    text-align:center;
+    background:#A9A9A9;
+}
+
+.num_
+{
+    width:68.02px;
+    height:30px;
+    text-align:center;
+    background:#E1E4F2;
+    border-radius:3px;
+}
+
+.num_d
+{
+    width:68.02px;
+    height:30px;
+    text-align:center;
+    background:#2A43A8;
+    border-radius:3px;
+}
+</style>
+</body>
+</html>

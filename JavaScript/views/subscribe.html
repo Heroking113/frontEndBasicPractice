@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义的发布订阅者模式类测试</title>
+</head>
+<body>
+<div>
+    <h1>自定义的发布订阅者模式类测试</h1>
+    <button id="submit">button</button>
+</div>
+<script type="text/javascript" src="static/js/subscribe.js"></script>
+<script>
+    /*测试自定义发布订阅者模式类*/
+    let $pond = _subscribe();
+    document.querySelector('#submit').onclick=function (ev) {
+        $pond.fire(ev);
+    };
+
+    function fun1() {
+        console.log(1);
+    }
+    function fun2() {
+        console.log(2);
+    }
+    function fun3() {
+        console.log(3);
+        $pond.remove(fun2);
+    }
+    function fun4(ev) {
+        console.log(4+ev);
+    }
+
+    $pond.add(fun1);
+    $pond.add(fun1);//测试去重
+    $pond.add(fun2);
+    $pond.add(fun3);
+    $pond.add(fun4);
+</script>
+</body>
+</html>

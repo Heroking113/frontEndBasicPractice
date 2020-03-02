@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过渡和转换</title>
+</head>
+<body>
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+    <div class="div3">3</div>
+    <div class="div4">4</div>
+    <div class="div6">6</div>
+    <style>
+/*
+知识点：
+1、2D转换：五种形式（掌握前四种即可）
+    1.1 translate()-根据X轴和Y轴位置给定的参数，从当前元素位置开始移动
+    1.2 rotate()-在一个给定度数顺时针旋转的元素，负值表示逆时针旋转
+    1.3 scale()-该元素增加或减少的大小，取决于高度和宽度的参数
+    1.4 skew()-两个参数，分别表示X轴和Y轴倾斜的角度，
+               如果第二个参数为空，则默认为0，参数为负表示向相反方向倾斜
+    1.5 matrix-将前面四种方式合并，用矩阵来表示2D转换(不掌握)
+    1.6 拓展：transform-origin()-控制转换原点
+2、过渡：4个过渡属性
+    2.1 transition-property:规定应用过渡的css属性名称（瞬间变化的属性不能设置过渡，比如:display）
+    2.2 transition-duration:定义过渡效果花费的时间，默认是0（这个属性是必须的）
+    2.3 transition-timing-function:规定过渡效果的时间曲线，默认是“ease”
+    2.4 transition-delay:规定过度效果何时开始，默认是0
+*/
+        div{
+            width:200px;
+            height: 100px;
+            background-color: grey;
+            margin: 150px 0;
+            text-align: center;
+        }
+        .div1{/*1.1*/
+            /*step1:将div1沿X轴向右移动50%，沿Y轴向上移动60px*/
+            transform: translate(50%, -60px);
+            /*step2：设置div1在0.5s内线性变高，延迟1s执行*/
+            /*transition-property: height;
+            transition-duration: .5s;
+            transition-timing-function: linear;
+            transition-delay: 1s;*/
+            transition:height .5s linear 1s; /*上面四种属性的简写形式*/
+        }
+        .div2{/*1.2*/
+            transform: rotate(-70deg);
+        }
+        .div3{/*1.3*/
+            transform: scale(1.5);
+        }
+        .div4{/*1.4*/
+            transform: skew(20deg);
+        }
+        .div6{/*1.6*/
+            transform-origin: right bottom;
+            transform: rotate(60deg) translate(50%,20px) scale(1.2);
+        }
+        /*鼠标交互时设置div1的背景色为红色，高度为200px*/
+        .div1:hover{
+            background-color: red;
+            height: 200px;
+        }
+
+    </style>
+</body>
+</html>

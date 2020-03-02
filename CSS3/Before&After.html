@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Before&After伪类</title>
+</head>
+<body>
+<div>
+    <p>世界</p>
+    <a href="https://www.baidu.com">baidu</a>
+    <div class="wrap">
+        <div class="content"></div>
+    </div>
+    <div id="pause"></div>
+</div>
+<style>
+    /*
+    相关知识：
+    1. before和after都是伪元素
+    2. 四个特点：不会出现在dom中，不会改变文档的内容，仅仅在css的渲染层中加入，不可复制的特殊元素
+    3. 应用：
+        3.1 用于添加内容：
+            要求：必须包含"content"属性，至少要保证一个空字符串，默认是行内元素
+            可添加内容:string\attr()\url()
+        3.2 清除浮动：目前最常用的清除浮动的方式就是用after伪类来清除浮动
+        3.4 绘制各种形状
+    */
+    body{
+        margin: 0;
+    }
+    .wrap{
+        background-color: #ebebeb;
+        zoom:1;/*IE的兼容性处理*/
+    }
+    .content{
+        height: 100px;
+        width: 100px;
+        float: left;
+        background-color: red;
+    }
+    /*step1:用before伪元素在“世界”两个字前面添加“你好”*/
+    p::before{
+        content:"你好";
+    }
+    /*step2:用after伪元素显示a标签的链接地址*/
+    a::after{
+        content:"("attr(href)")";
+    }
+    /*step3:用before伪元素在a标签前面添加百度logo*/
+    a::before{
+        content:url("https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top-e3b63a0b1b.png");
+    }
+    /*step4:用after伪元素来解决wrap塌陷问题，也就是清除浮动*/
+    .wrap{
+        content:"";
+        display: block;
+        clear: both;
+    }
+    /*step5：用伪元素画一个暂停图标*/
+    #pause{
+        height: 30px;
+        width: 30px;
+        margin: 20px;
+        border: 5px solid blue;
+        border-radius: 50%;
+        position: relative;
+        display: inline-block;
+        background-color: blue;
+    }
+    #pause::before{
+        content:"";
+        height: 20px;
+        width: 5px;
+        display: inline-block;
+        border-left: 8px solid #fff;
+        border-right: 8px solid #fff;
+        position: absolute;
+        left: 4px;
+        top:5px;
+    }
+</style>
+</body>
+</html>

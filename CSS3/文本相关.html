@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本相关</title>
+</head>
+<body>
+    <div class="step1 ellipsis">在这个div中，超出的文字会被隐藏，并显示省略号</div>
+    <div class="step1 clip">在这个div中，超出的文字会被直接截断</div>
+    <div class="step1 userSet">在这个div中，超出的文字会被隐藏，并显示">>"（仅在火狐浏览器下支持）</div>
+    <h1>I LOVE YOU FOREVER.</h1>
+    <p class="step3">镂空文字效果</p>
+    <p class="keep-all">This paragraph contains some text, this line will break-at-hyphenates.</p>
+    <p class="break-all">This paragraph contains some text, these lines will break at any character.</p>
+    <p class="step5">This paragraph contains very long words, fjdklajfdlkajfdlkajfdlakjfdlajfdklajfdlkajfdlkaj,
+    the long words will break and wrap to the next line.</p>
+<style>
+    /*
+    相关知识点：
+    1. text-flow(它有三个可选值)：
+        1.1 ellipsis:超出的文本隐藏，同时显示省略号
+        1.2 clip: 超出的文本被直接截断
+        1.3 其他字符串: 超出的文本显示特定的字符串(仅火狐可用)
+        1.4 备注：一般配合 white-space:nowrap 使用
+    2. text-shadow(该属性应用于阴影文本):
+        2.1 语法：text-shadow: x-offset y-offset blur color;
+            参数解释：
+                x-offset: (必须)水平阴影的位置，允许负值
+                y-offset: (必须)垂直阴影的位置，允许负值
+                blur: (可选)模糊的距离
+                color: (可选)阴影的颜色
+    3. text-stroke:添加描边
+    4. word-break:设置自动换行的处理方法
+        4.1 语法：word-break: normal || break-all || keep-all
+            参数解释：
+                normal：使用浏览器默认的换行规则
+                keep-all：只能在空格或连接字符处换行
+                break-all：允许在单词内换行
+    5. word-wrap:允许文本自动换行
+    */
+    .step1{
+        margin: 50px;
+        width: 12em;
+        overflow: hidden;
+        border: 1px solid red;
+        white-space: nowrap; /*不换行*/
+    }
+    .ellipsis{
+        text-overflow: ellipsis;
+    }
+    .clip{
+        text-overflow:clip;
+    }
+    /*.userSet{
+        text-overflow: ">>"; !*仅火狐支持*!
+    }*/
+    h1{
+        color: white;
+        text-shadow: 2px 2px 4px #000000;
+    }
+    .step3{
+        font-size: 50px;
+        font-weight: bold;
+        letter-spacing: 2px; /*描边*/
+        color: transparent;/*w文字颜色为白色*/
+        -webkit-text-stroke: 2px #456823;
+        -moz-text-stroke: 2px #456823;
+    }
+    .keep-all{
+        width: 9em;
+        border: 1px solid black;
+        word-break: keep-all;
+    }
+    .break-all{
+        width: 9em;
+        border: 1px solid red;
+        word-break: break-all;
+    }
+    .step5{
+        width: 11em;
+        border: 1px solid blue;
+        word-wrap:break-word;
+    }
+</style>
+</body>
+</html>

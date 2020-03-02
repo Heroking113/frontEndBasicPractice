@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标交互</title>
+</head>
+<body>
+    <div class="container">
+        container
+        <div>
+            div标签
+            <br>
+            <span>div中的span标签</span>
+        </div>
+        <p>p标签</p>
+        <em>em标签</em>
+        <i>i标签</i>
+    </div>
+    <style>
+        .container{
+            background-color: #eee;
+        }
+        .container div{
+            width:200px;
+            height: 100px;
+            background-color: red;
+        }
+        em{
+            font-size: 20px;
+            font-weight: bold;
+            display: inline-block;
+            width: 400px;
+            height: 100px;
+            background-color: green;
+        }
+        /*step1:鼠标放在container上时，span标签的字体大小为20px*/
+        .container:hover span{/*子孙元素：用空格选择即可*/
+
+            font-size: 20px;
+        }
+        /*step2：鼠标放在.container下面的子div上时，设置临近的p标签字体大小为20px，字体颜色为红色；
+                  设置i标签的字体样式为normal，字体大小为20px*/
+        .container>div:hover + p{/*选择邻近的、在它后面的兄弟元素：用"+"选择即可
+                                   （备注：如果该p标签在该div标签的前面在，则"+"选择器不起作用）*/
+            font-size: 20px;
+            color: red;
+        }
+        .container>div:hover ~ i{/*非邻近的、在它后面的兄弟元素，用"~"选择即可
+                                （备注：如果该i标签在该div标签的前面在，则"~"选择器不起作用）*/
+            font-style: normal;
+            font-size: 20px;
+        }
+    </style>
+</body>
+</html>

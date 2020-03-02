@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex弹性盒子模型</title>
+</head>
+<body>
+<div class="box">
+    <div class="item"></div>
+</div>
+<div class="box step1">
+    <div class="item">1-1</div>
+    <div class="item">1-2</div>
+</div>
+<div class="box step2">
+    <div class="item">2-1</div>
+    <div class="item">2-2</div>
+</div>
+<div class="box step3">
+    <div class="item">3-1</div>
+    <div class="item">3-2</div>
+    <div class="item">3-3</div>
+</div>
+<div class="box step4">
+    <div class="item">4-1</div>
+    <div class="item">4-2</div>
+    <div class="item">4-3</div>
+    <div class="item">4-4</div>
+    <div class="item">4-5</div>
+    <div class="item">4-6</div>
+</div>
+<div class="box step5">
+    <div class="item">5-1</div>
+    <div class="item" style="height:80px; width: 80px;line-height: normal">5-2</div>
+    <div class="item" style="height: auto;">5-3</div>
+</div>
+<div class="box step6">
+    <div class="item">6-1</div>
+    <div class="item">6-2</div>
+    <div class="item">6-3</div>
+    <div class="item">6-4</div>
+    <div class="item">6-5</div>
+    <div class="item">6-6</div>
+    <div class="item">6-7</div>
+    <div class="item">6-8</div>
+    <div class="item">6-9</div>
+</div>
+<div class="box step7">
+    <div class="item">7-1</div>
+    <div class="item">7-2</div>
+    <div class="item">7-3</div>
+    <div class="item">7-4</div>
+    <div class="item">7-5</div>
+    <div class="item self">7-6</div>
+    <div class="item order1">7-7</div>
+    <div class="item">7-8</div>
+    <div class="item">7-9</div>
+</div>
+
+<style>
+    /*
+    相关知识点：
+    1.基本概念：任何一个容器都可以指定为Flex布局。块级元素要利用弹性盒子，只需要设置 display:flex；
+                需要设置 display:inline-flex（备注：采用Flex布局的元素称为Flex容器“flex container”，它的所有子元素
+                自动成为容器成员，称为Flex项目“flex item”）
+    */
+    .box{
+        width: 200px;
+        height: 200px;
+        float: left;
+        margin:100px;
+        border-radius: 20px;
+        background-color: #e7e7e7;
+    }
+    .item{
+        background-color: #000;
+        height: 51px;
+        width: 51px;
+        border-radius: 50%;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        line-height: 40px;
+    }
+    .step1{
+    /*指定容器：设置step1为一个flex容器*/
+        display: flex;
+    }
+    .step2{
+        display: flex;
+    /*设置主轴：分别设置子元素排成一行（默认）、一列、倒序一行、倒叙一列*/
+        /*flex-direction: row;*/
+        /*flex-direction: row-reverse;*/
+        /*flex-direction: column;*/
+        flex-direction: column-reverse;
+    }
+    .step3{
+        display: flex;
+    /*设置主轴对齐方式：分别设置子元素沿正方向排列、反方向排列(其他排列方式可查)*/
+        /*justify-content: flex-start; !*默认*!*/
+        justify-content: flex-end;
+    }
+    .step4{
+        display: flex;
+        justify-content: space-around;
+    /*在一行排列不下的时候，是否允许换行或换列*/
+        flex-wrap: wrap;
+    }
+    .step5{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        /*设置交叉轴的对齐方式分别为：center、baseline、stretch（默认）*/
+        /*align-items: center;*/
+        /*align-items: baseline;*/
+        align-items: stretch;
+    }
+    .step6{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        /*设置交叉轴多根轴线的对齐方式分别为：center、space-around、space-between*/
+        /*align-content: center;*/
+        /*align-content: space-around;*/
+        align-content: space-between; /*备注：多根轴线的对齐方式对单根轴线不起作用*/
+    }
+    /*
+    1、align-self: 项目属性，允许单个项目有与其他项目不一样的对齐方式，可覆盖：align-items属性
+    例如:align-self: auto | flex-start | flex-end | center | baseline | stretch;
+    备注:该属性的6个值，除了auto外，其他都与align-items属性完全一致
+    2、order：项目属性，定义项目的排列顺序，数值越小，排列越靠前，默认为0
+    */
+    .step7{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .self{
+        align-self: flex-start;
+    }
+    .order1{
+        /*order: -3;*/
+        order: 3;
+    }
+
+</style>
+</body>
+</html>

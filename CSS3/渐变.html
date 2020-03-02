@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>渐变</title>
+</head>
+<body>
+    <div class="step1">step1</div>
+    <div class="step2">step2</div>
+    <div class="step3">step3</div>
+    <div class="step4">step4</div>
+    <div class="step5">step5</div>
+<style>
+    div{
+        width: 400px;
+        height: 200px;
+        margin: 200px;
+    }
+    /*
+    相关知识:
+    1. CSS3渐变相比于图片渐变的优势：可以不用请求服务器，提高渲染效率；放大之后不会失真，因为它是由浏览器生成的
+    2. CSS3渐变分为"线性渐变"和"径向渐变"
+    3. 兼容：
+        背景:CSS3渐变的浏览器兼容性不太好，但是很重要
+        常见的浏览器内核有四种：
+        3.1 Trident: IE, The World, 搜狗, 360 (-ms-)
+        3.2 Gecko: Netscape6+, Fire Fox, SeaMonkey(-moz-)
+        3.3 Presto: Opera7+;原内核：Presto，现内核：Blink(-o-)
+        3.4 Webkit: Safari, Chrome(-webkit-)
+    */
+    /*设置.step1从red线性渐变到blue*/
+    .step1{
+        background: -webkit-linear-gradient(red, blue);
+        background: -o-linear-gradient(red, blue);
+        background: -moz-linear-gradient(red, blue);
+        background: linear-gradient(red, blue);
+    }
+    /*设置.step2从左边开始由red线性渐变到blue*/
+    .step2{
+        background: -webkit-linear-gradient(left, red, blue);
+        background: -o-linear-gradient(right, red, blue);
+        background: -moz-linear-gradient(right, red, blue);
+        background: linear-gradient(to right, red, blue);
+    }
+    /*设置.step3从左上角开始由red线性渐变到blue*/
+    .step3{
+        background: -webkit-linear-gradient(left top, red, blue);
+        background: -o-linear-gradient(right bottom, red, blue);
+        background: -moz-linear-gradient(right bottom, red, blue);
+        background: linear-gradient(to right bottom, red, blue);
+    }
+    /*用角度设置.step4从左上角开始由red线性渐变到blue*/
+    .step4{
+        background: -webkit-linear-gradient(135deg, red, blue);
+        background: -o-linear-gradient(135deg, red, blue);
+        background: -moz-linear-gradient(135deg, red, blue);
+        background: linear-gradient(135deg, red, blue);
+    }
+     /*.step5从左到右依次设置彩虹渐变*/
+    .step5{
+        background: -webkit-linear-gradient(left, red, orange, yellow, green, blue, indigo, violet);
+        background: -o-linear-gradient(right, red, orange, yellow, green, blue, indigo, violet);
+        background: -moz-linear-gradient(right, red, orange, yellow, green, blue, indigo, violet);
+        background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    }
+    /*径向渐变可自行搜索*/
+</style>
+</body>
+</html>

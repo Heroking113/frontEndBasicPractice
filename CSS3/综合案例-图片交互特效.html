@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片交互特效</title>
+</head>
+<body>
+    <div>
+    </div>
+    <div class="container">
+        <figure class="effect">
+            <a href="http://www.worldo2o.top/o2o/frontend/index">
+                <img src="1.jpg" alt="">
+            <figcaption>
+                <h2>Passionate <span>整体居中</span>
+                </h2>
+                <p>Julia dances in the deep dark</p>
+                <p>She loves the smell of the ocean</p>
+                <p>And drives into the morning night</p>
+            </figcaption>
+            </a>
+        </figure>
+    </div>
+    <style>
+        .container{
+            /*
+            1.在整个屏幕垂直水平居中*/
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            /*
+            2.flex布局：让子元素相对于父元素水平垂直居中
+            display: flex;
+            align-items: center;
+            justify-content: center;*/
+
+        }
+        .effect{
+            max-width:480px;
+            min-width: 400px;
+            width: 40%;
+            height: auto;
+            max-height: 270px;
+            overflow: hidden;
+            background: #2f3238;
+            position:relative;
+            cursor: pointer;
+        }
+        .effect img{
+            height: 270px;
+            opacity: .8;
+            transition: .5s; /*动画过渡时间*/
+        }
+        figcaption{
+            position: absolute;/*相对于父元素的绝对定位*/
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+
+            color: #fff;
+            padding:2em;
+            text-transform: uppercase;
+            font-size: 1.25em;
+        }
+
+        h2{
+            margin: 0;/*h2标签自带margin属性，所以去除这个属性*/
+            padding:.5em 0;
+            font-weight: 300;
+            word-spacing: -0.15em; /*调整文字间距*/
+        }
+        h2 span{
+            font-weight: 800;
+        }
+        .effect p{
+            margin: 0 0 0.25em;
+            padding: .4em 1em;
+            background-color: rgba(255,255,255,.9);
+            display: inline-block; /*设置为块级元素之后，可以正好包裹内容，不会有多的背景*/
+            color: #2f3238;
+            text-transform: none;
+            font-weight: 500;
+            font-size: 75%;
+            letter-spacing: 1px;
+            transform:translate(-360px,0);
+            transition: .5s; /*动画过渡时间*/
+        }
+        .effect:hover img{
+            opacity: .4;
+            transform: scale(1.1);
+        }
+        .effect:hover p{
+            transform: translate(0,0);
+        }
+        .effect p:nth-of-type(2){
+            transition-delay: .05s;
+        }
+        .effect p:nth-of-type(3){
+            transition-delay: .1s;
+        }
+    </style>
+</body>
+</html>

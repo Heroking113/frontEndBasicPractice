@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="len">
+<head>
+    <meta charset="UTF-8">
+    <title>百度一下，你就知道</title>
+    <style type="text/css">
+        element.style {
+            background-color: white;
+        }
+
+        body {
+            height: 100%;
+            min-width: 1000px;
+            cursor: default;
+        }
+
+        #wrapper {
+            height = 100%;
+        }
+
+        #head {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            min-height: 768px;
+            cursor: default;
+        }
+
+        #linel {
+            position: absolute;
+            z-index: 1.0;
+            width: 100%;
+            top: 2.5px;
+            height: 30px;
+            border-bottom: 1px solid #ebebeb;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(235, 235, 235);
+        }
+
+        .s-upfunc-menus {
+            position: relative;
+
+            transform: translateY(-18%); /*上移元素*/
+            -ms-transform: translateY(-18%);
+            -webkit-transform: translateY(-18%);
+
+            z-index: 1;
+            height: 28px;
+            font-size: 14px;
+        }
+
+        .s-weather-wrapper {
+            float: left;
+        }
+
+        .s-mod-weather {
+            margin: 7px 0 0 15px;
+            float: left;
+            height: 20px;
+            line-height: 20px;
+            font-size: 12px;
+        }
+
+        .s-mod-weather .weather-mod {
+            height: auto;
+        }
+
+        .s-mod-weather a, .s-mod-weather em, .s-mod-weather span {
+            color: #adacac;
+        }
+
+        .s-mod-weather a {
+            outline-color: initial;
+            outline-style: none;
+            outline-width: initial;
+            text-decoration-line: none;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+        }
+
+        .city-weather {
+            display: block;
+            cursor: pointer;
+            height: 20px;
+            white-space: nowrap;
+        }
+
+        .s-mod-weather {
+            line-height: 20px;
+            font-size: 12px;
+        }
+
+        .s-mod-weather
+        .show-weather, .s-mod-weather .show-polution {
+            display: inline-block;
+            height: 20px;
+        }
+
+        .s-mod-weather a, .s-mod-weather em, .s-mod-weather span {
+            color: #adacac;
+        }
+
+        .s-mod-weather, .city-weather a, .city-weather em, .city-weather span, .show-pollution a, .show-pollution em, .show-pollution span {
+            color: #555;
+        }
+
+        .s-mod-weather span {
+            display: inline-block;
+            height: 20px;
+            vertical-align: bottom;
+        }
+
+        .city-weather {
+            cursor: pointer;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .weather em {
+            vertical-align: top;
+        }
+
+        .city-weather em {
+            color: #555;
+        }
+
+        em {
+            font-style: normal
+        }
+
+        .s-mod-weather
+        .show-icon {
+            margin-right: 9px;
+        }
+
+        .s-mod-weather span {
+            display: inline-block;
+            height: 20px;
+            vertical-align: bottom;
+        }
+
+        .s-mod-weather .show-icon .weather-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .show-icon .show-icon-temp {
+        }
+
+        .s-mod-weather .show-pollution {
+            display: inline-block;
+            height: 20px;
+        }
+
+        .show-pollution {
+            vertical-align: bottom;
+        }
+
+        .city-weather span, .show-pollution span {
+            color: #555;
+        }
+
+        .s-mod-weather span {
+        }
+
+        .s-mod-weather span {
+            display: inline-block;
+            height: 20px;
+            vertical-align: bottom;
+        }
+
+        .s-mod-weather .polution-level-0 .show-pollution-name {
+            color: #38f;
+            font-weight: bold;
+            color: blue;
+        }
+
+        .s-mod-weather .show-weather em, .s-mod-weather .show-pollution-num {
+            line-height: 20px;
+            margin-left: 0;
+        }
+
+        .s-mod-weather .show-vertical {
+            margin-right: 11px;
+        }
+
+        .s-upfunc-menus .s-icons {
+            float: left;
+            _display: inline;
+        }
+
+        .s-upfunc-menus .s-icons a {
+            position: relative;
+            height: 32px;
+            line-height: 32px;
+            margin-right: 19px;
+            color: #555;
+            text-decoration: underline;
+            outline: none;
+            display: inline-block;
+            text-shadow: none;
+        }
+
+        #u1 {
+            z-index: 1;
+            position: absolute;
+            top: 2.5px;
+            right: 0;
+            height: 28px;
+            width: 550px;
+            text-align: right;
+            color: #999;
+        }
+
+        #u1 a.mnav {
+            float: left;
+            color: #333;
+            margin-right: 10px;
+            font-weight: 600;
+            line-height: 20px;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+
+        #u1 a
+
+        .1
+        b {
+            display: inline-block;
+            float: left;
+            color: #333;
+            font-size: 14px;
+            line-height: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+            text-decoration: underline;
+            text-decoration-line: underline;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+        }
+
+        #u1 a.pf {
+            display: inline-block;
+            float: left;
+            color: #333;
+            line-height: 22px;
+            font-size: 14px;
+            margin-left: 0;
+            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            text-decoration: underline;
+            text-decoration-line: underline;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+        }
+
+        #u1 a.bri {
+            text-align: left;
+            text-indent: 3px;
+            margin-top: -8px;
+            display: inline-block;
+            text-shadow: none;
+            position: absolute;
+            right: 0px;
+            display: inline-block;
+            zoom: 1;
+            vertical-align: top;
+            width: 89px;
+            height: 36px;
+            line-height: 34px;
+            color: white;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(57, 139, 251);
+            font-size: 14px;
+            text-align: center;
+            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            border-bottom: 1px solid #398bfb;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(57, 139, 251);
+            text-decoration: none;
+            text-decoration-line: none;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+        }
+
+        #u1 a.rightmove {
+            text-align: left;
+            text-indent: 12px;
+        }
+
+        #head_wrapper {
+            position: relative;
+            height: 38.2%;
+            min-height: 293px;
+            width: 1000px;
+            margin: auto;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+        }
+
+        .body, button, input, select, textarea {
+            font: 12px arial;
+        }
+
+        .s_form {
+            width: 50px;
+            mid-height: 293px;
+            height: 100%;
+            margin: 0 auto 0 auto;
+            margin-top: 0;
+            margin-right: auto;
+            margin-bottom: 0;
+            margin-left: auto;
+            text-align: left;
+            z-index: 100;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        #s-lg-img {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -135px;
+        }
+
+        body, form {
+            position: relative;
+        }
+
+        body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+            margin: 0;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        form {
+            display: block;
+        }
+
+        .soutu-env-newindex .quickdelete-wrap {
+            position: relative;
+        }
+
+        .soutu-btn {
+            z-index: 1;
+            position: absolute;
+            right: 11px;
+            top: 50%;
+            margin-top: -8px;
+            height: 16px;
+            width: 18px;
+            background: #fff url(https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/soutu/img/camera_new_5606e8f.png) no-repeat;
+            background-image: -webkit-image-set(url(https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/soutu/img/camera_new_5606e8f.png) 1x, url(https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/soutu/img/camera_new_x2_fb6c085.png) 2x);
+        }
+
+        .soutu-env-newindex.soutu-env-nomac #kw {
+            width: 480px !important;
+            padding-right: 48px !important;
+        }
+
+        #head_wrapper.s-down #kw, #kw {
+            padding: 9px 7px;
+            padding-top: 9px;
+            padding-bottom: 9px;
+            padding-left: 7px;
+            font: 16px arial;
+            font-style: normal;
+            font-variant-ligatures: normal;
+            font-variant-caps: normal;
+            font-variant-numeric: normal;
+            font-variant-east-asian: normal;
+            font-weight: normal;
+            font-stretch: normal;
+            font-size: 16px;
+            line-height: normal;
+            font-family: arial;
+            border: 1px solid #b8b8b8;
+            border-top-color: rgb(184, 184, 184);
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-right-color: initial;
+            border-right-style: initial;
+            border-right-width: 0px;
+            border-bottom-color: rgb(184, 184, 184);
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-left-color: rgb(184, 184, 184);
+            border-left-style: solid;
+            border-left-width: 1px;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            border-right: 0;
+            border-right-width: 0px;
+            border-right-style: initial;
+            border-right-color: initial;
+        }
+
+        body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+            margin: 0;
+        }
+
+        input, textarea, select, button, meter, progress {
+            -webkit-writing-mode: horizontal-tb !important;
+        }
+
+        a:-webkit-any-link {
+            color: -webkit-link;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        body, button, input, select, textarea {
+            font: 12px arial;
+        }
+
+        body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+            margin: 0;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        #head_wrapper.s-down .s_btn_wr, .s_btn_wr {
+            width: 102px;
+            height: 38px;
+            border: 1px solid #38f;
+            border-top-color: rgb(51, 136, 255);
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-right-color: rgb(51, 136, 255);
+            border-right-style: solid;
+            border-right-width: 1px;
+            border-bottom-color: rgb(46, 122, 229);
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-left-color: rgb(51, 136, 255);
+            border-left-style: solid;
+            border-left-width: 1px;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            border-bottom: 1px solid #2e7ae5;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(46, 122, 229);
+            background-color: #38f;
+        }
+
+        #head_wrapper.s-down .s_btn_wr, .s_ipt, .s_btn_wr {
+            display: inline-block;
+            zoom: 1;
+            background: none;
+            vertical-align: top;
+            top: 39px;
+            right: 536px;
+        }
+
+        #head_wrapper.s-down .btn, .s-title-img .btn {
+            cursor: pointer;
+            width: 102px;
+            height: 38px;
+            line-height: 38px;
+            padding: 0;
+            border: 0;
+            background: none;
+            background-color: #38f;
+            font-size: 16px;
+            color: white;
+            box-shadow: none;
+            font-weight: normal;
+        }
+
+        body, button, input, select, textarea {
+            font: 12px arial;
+        }
+
+        body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+            margin: 0;
+        }
+
+        .btn /* 百度一下的背景*/
+        {
+            color: white;
+            background-color: #38f;
+            width: 102px;
+            height: 38px;
+            font-size: 16px;
+            border: 0;
+        }
+
+        map {
+            display: inline;
+        }
+
+        a:-webkit-any-link {
+            color: -webkit-link;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        #u1 a.tt {
+            text-align: right;
+            text-indent: 15px;
+        }
+
+        .moves_ {
+            top: 70px;
+            left: 228px;
+        }
+
+        <!--
+        伪类部分--! >
+
+        <!--
+        注释：在 CSS 定义中，a:hover 必须位于 a:link 和 a:visited 之后，这样才能生效！
+        注释：在 CSS 定义中，a:active 必须位于 a:hover 之后，这样才能生效！-- >
+
+        <!--
+        a.ww:link {
+            color: #FF0000
+        }
+
+        -->
+        <!--
+        a.ww:visited {
+            color: #00FF00
+        }
+
+        -->
+        #u1 a:hover {
+            color: #1313ae
+        }
+
+        <!--
+        a.ww:active {
+            color: #0000FF
+        }
+
+        -->
+
+        <!--
+        纯css写设置下拉菜单-- >
+        ul {
+            list-style: none;
+        }
+
+        .nav > li {
+            float: left;
+        }
+
+        ul a {
+            display: block;
+            text-decoration: none;
+        <!-- width: 21 px;
+        --> height: 25px;
+            text-align: center;
+            line-height: 25px;
+            color: blank;
+            background: none;
+        }
+
+        .drop {
+            height: 28px;
+        }
+
+        .drop-down-content {
+            position: absolute;
+            padding: 0;
+            opacity: 0;
+            top: 30px;
+            overflow: hidden;
+            transition: all 1s ease;
+        }
+
+        .drop-down-content li:hover a {
+            background-color: gray;
+        }
+
+        .nav .drop:hover .drop-down-content {
+            opacity: 1;
+            height: 100px;
+        }
+
+        <!--
+        纯js写更多产品下拉菜单-- >
+
+        <!--
+        暂未完成-- >
+
+
+    </style>
+</head>
+
+<body>
+<div id="wrapper">
+    <div id="head">
+        <div id="linel">
+            <div class="s-upfunc-menus">
+                <div class="s-weather-wrapper">
+                    <div id="s-mod-weather" class="s-mod-weather s-isindex-wrap hide-unknown-city">
+                        <div class="weather-mod">
+                            <div class="city-weather"
+                                 href="https://www.baidu.com/s?tn=baidutop10&rsv_idx=2&wd=%E6%B7%B1%E5%9C%B3%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5"
+                                 target="_blank">
+                            <span class="show-weather">
+                                    <em data-key="深圳">深圳:</em>
+                                <span class="show-icon">
+                                    <span class="weather-icon"
+                                          style="background-image:url(https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/weather/aladdin/png_18/a1.png);*background-image:none;*filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/weather/aladdin/png_18/a1.png, enabled=true,sizingMethod="></span>
+                                <em class="show-icon-temp">24℃</em>
+                                <span class="show-temp"></span>
+                                <em class="show-pollution-name">优</em>
+                            <em class="show-pollution-num">&nbsp;41</em>
+                                <span class="show-vertical">&nbsp;|</span>
+                                </span>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="s-icons" class="s-icons">
+                    <a class="s-skin" href="#" onclick="return false；" data-tid="2001" title="换肤">
+                        <span class="s-icon s-icon-skin"></span>
+                        <span class="title">换肤</span>
+                    </a>
+                </div>
+                <div class="s-icons" class="s-icons">
+                    <a class="s-skin" href="#" onclick="return false；" data-tid="2002" title="消息">
+                        <span class="s-icon s-icon-skin"></span>
+                        <span class="title">消息</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="u1">
+            <ul class="nav">
+                <a href="http://news.baidu.com" class="mnav tt" target="_blank">新闻</a>
+                <a href="http://www.hao123.com" class="mnav rightmove" target="_blank">hao123</a>
+                <a href="http://map.baidu.com" class="mnav rightmove" target="_blank">地图</a>
+                <a href="http://v.baidu.com" class="mnav rightmove" target="_blank">视频</a>
+                <a href="http://tieba.baidu.com" class="mnav rightmove" target="_blank">贴吧</a>
+                <a href="http://xueshu.baidu.com" class="mnav rightmove" target="_blank">学术</a>
+                <a href="https://passport.baidu.com/v2/?login&tpl=mn&u=http%3A%2F%2Fwww.baidu.com%2F&sms=5"
+                   class=" rightmove 1b mnav" onclick="return false;">登录</a>
+                <li class="drop"><a href="http://www.baidu.com/gaoji/preferences.html" class="pf" target="_blank">设置</a>
+                    <ul class="drop-down-content">
+                        <li><a href="javascript:;">搜索设置</a></li>
+                        <li><a href="//www.baidu.com/gaoji/advanced.html" target="_blank">高级搜索</a></li>
+                        <li><a href="javascript:;">关闭预测</a></li>
+                        <li><a href="https://www.baidu.com/duty/privacysettings.html" target="_blank">隐私设置</a></li>
+                    </ul>
+                </li>
+                <a href="http://www.baidu.com/more/" class="bri" style="display:block" target="_blank">更多产品</a>
+            </ul>
+        </div>
+        <div id="head_wrapper">
+            <div class="s_form">
+                <div class="soutu-env-nomac soutu-env-newindex">
+                    <div>
+                        <img id="s-lg-img"
+                             src="https://www.baidu.com/img/bd_logo1.png?qua=high&where=super" width="270" height="129"
+                             usemap="#mp" style="position:relative;top:100px;">
+                    </div>
+                    <form action="\s" class="moves_" onsubmit="javascript:F.call('ps/sug', 'pssubmit');">
+                    <span class="s_ipt quickdelete-wrap">
+                        <span class="soutu-btn"></span>
+                        <input id="kw" maxlength="100" autocomplete="off">
+                    </span>
+                        <span class="s_btn_wr">
+                        <input type="submit" value="百度一下" class="btn">
+                    </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>特殊用法</title>
+</head>
+<body>
+<div>
+    <a href="#div1">到div1</a>
+    <a href="#div2">到div2</a>
+    <div id="div1">div1</div>
+    <div id="div2">div2</div>
+
+    <div class="btn-wrap">
+        <input type="checkbox" id="input1">
+        <label class="btn" for="input1"></label>
+    </div>
+</div>
+<style>
+/*
+   相关知识点：
+   1. a标签+target伪类：给选中的锚点设置样式（只适合单屏幕的选择器，不然页面会发生变化）
+   2. label+input: 制作按钮/选项卡，input是表单元素，label用于激活对应id的input元素
+*/
+    #div1,#div2{
+        height: 400px;
+        width: 400px;
+        position: absolute;
+        text-align: center;
+        left: 50%;
+        top:50%;
+        margin: -200px;
+        opacity: 0; /*设置透明度*/
+        transition: .8s; /*渐变*/
+    }
+    #div1{
+        background-color: red;
+        opacity: 1;
+    }
+    #div2{
+        background-color: green;
+        opacity: 0;
+    }
+    #div1:target{
+        opacity: 1;
+    }
+    #div2:target{
+        opacity: 1;
+    }
+    .btn-wrap{
+        text-align: center;
+    }
+    /*给label标签用before&after伪类设置成按钮*/
+    .btn{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: inline-block;
+        background-color: #f9f8f6;
+        box-shadow:0 5px 10px 0 #333, 0 15px 20px 0 #ccc;
+        cursor: pointer;
+        position: relative;
+    }
+    .btn::before{
+        content:"";
+        height: 22.7px;
+        width: 22.7px;
+        position:absolute;
+        border-radius: 50%;
+        display: inline-block;
+        background-color: #ff9900;
+        box-shadow: inset 0 0 0 5px #ccc, inset 0 0 0 14px #f9f8f6;
+        left: 50%;
+        top: 50%;
+        transform:translate(-50%, -50%);
+    }
+    .btn::after{
+        content:"";
+        position: absolute;
+        display: inline-block;
+        left: 50%;
+        top: 35%;
+        width: 4px;
+        height: 12px;
+        background-color: #ccc;
+        box-shadow: 0 0 0 2.5px #f9f8f6;
+        transform:translate(-50%, -50%);
+    }
+    /*给.btn设置选中的样式*/
+    #input1:checked~.btn{
+        box-shadow:0 2px 5px 0 grey, 0 15px 20px 0 transparent;
+    }
+    #input1:checked~.btn::before{
+        box-shadow: inset 0 0 0 5px #ff9900, inset 0 0 0 14px #f9f8f6;
+    }
+    #input1:checked~.btn::after{
+        background-color: #ff9900;
+    }
+    #input1{
+        display: none;
+    }
+    /*给按钮选中设置过渡样式*/
+    .btn,
+    .btn::before,
+    .btn::after{
+        transition: .5s;
+    }
+</style>
+</body>
+</html>
